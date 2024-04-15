@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, dialog } from "electron";
 import { join } from "path";
 
 const createWindow = () => {
@@ -23,6 +23,7 @@ const createWindow = () => {
 		mainWindow.show();
 		mainWindow.focus();
 		console.log("ready-to-show");
+		showOpenDialog();
 	});
 
 	// mainWindow.webContents.openDevTools({
@@ -43,3 +44,11 @@ app.on("activate", () => {
 		createWindow();
 	}
 });
+
+const showOpenDialog = async () => {
+	const result = await dialog.showOpenDialog({
+		properties: ['openFile'],
+		filters: [{name: 'Markdown File', extensions: ['md']}]
+	});
+	console.log(result);
+}
