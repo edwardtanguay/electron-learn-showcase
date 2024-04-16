@@ -17,6 +17,5 @@ export const toHTML = async (markdown: string): Promise<string> => {
     .use(remarkRehype as Preset)
     .use(rehypeStringify as Preset)
     .process(markdown);
-
   return file.toString();
 };
